@@ -113,14 +113,20 @@ def main():
 
     action = args.action
     if action == 'on':
-        set_enabled(touchpad_id, enabled_id, True)
+        state = True
     elif action == 'off':
-        set_enabled(touchpad_id, enabled_id, False)
+        state = False
     elif action == 'toggle':
-        set_enabled(touchpad_id, enabled_id, not enabled)
+        state = not enabled
     else:
         print("Error: invalid action: %s" % action)
         return
+
+    set_enabled(touchpad_id, enabled_id, state)
+    if state:
+        print('on')
+    else:
+        print('off')
 
 if __name__ == '__main__':
     main()
